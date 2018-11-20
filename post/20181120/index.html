@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.51" />
+
+
+
+<link rel="canonical" href="https://raycxl.github.io/post/20181120/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>区分 ArchiMate 中的 Composition 和 Aggregation - CXL&#39;s blog</title>
+    
+<meta name="description" content="最近因为工作涉及描述企业架构（Enterprise Architecture, EA） ，研究了下 ArchiMate，看到第5章 Relationships，发现其中的 Composition 和 Aggregation 非常 confuse。 官方描述如下：a composition relationship is that the whole or part of the source element is composed of the whole of the target element.an aggregation relationship is that the whole or part of the source element aggregates the whole of the target element.整个定义区别就是 is composed of 和 aggregate 的区别，总之我没有看懂有什么区别。composition官方样例： aggregation官方样例： 网上找了下，中文资源有 周金根博客 ，现在回头来看已经可以看懂了，不过当时也没有完全理解。我推荐Phil Curnow 的解释，其采用了程序员较容易理解的类的概念来解释这两者，我觉得非常赞。在此简单翻译记录。">
+
+<meta property="og:title" content="区分 ArchiMate 中的 Composition 和 Aggregation - CXL&#39;s blog">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://raycxl.github.io/post/20181120/">
+<meta property="og:image" content="https://raycxl.github.io/images/default.png">
+<meta property="og:site_name" content="CXL&#39;s blog">
+<meta property="og:description" content="最近因为工作涉及描述企业架构（Enterprise Architecture, EA） ，研究了下 ArchiMate，看到第5章 Relationships，发现其中的 Composition 和 Aggregation 非常 confuse。 官方描述如下：a composition relationship is that the whole or part of the source element is composed of the whole of the target element.an aggregation relationship is that the whole or part of the source element aggregates the whole of the target element.整个定义区别就是 is composed of 和 aggregate 的区别，总之我没有看懂有什么区别。composition官方样例： aggregation官方样例： 网上找了下，中文资源有 周金根博客 ，现在回头来看已经可以看懂了，不过当时也没有完全理解。我推荐Phil Curnow 的解释，其采用了程序员较容易理解的类的概念来解释这两者，我觉得非常赞。在此简单翻译记录。">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="CXL&#39;s blog">
+<meta name="twitter:url" content="https://raycxl.github.io/post/20181120/">
+<meta name="twitter:title" content="区分 ArchiMate 中的 Composition 和 Aggregation - CXL&#39;s blog">
+<meta name="twitter:description" content="最近因为工作涉及描述企业架构（Enterprise Architecture, EA） ，研究了下 ArchiMate，看到第5章 Relationships，发现其中的 Composition 和 Aggregation 非常 confuse。 官方描述如下：a composition relationship is that the whole or part of the source element is composed of the whole of the target element.an aggregation relationship is that the whole or part of the source element aggregates the whole of the target element.整个定义区别就是 is composed of 和 aggregate 的区别，总之我没有看懂有什么区别。composition官方样例： aggregation官方样例： 网上找了下，中文资源有 周金根博客 ，现在回头来看已经可以看懂了，不过当时也没有完全理解。我推荐Phil Curnow 的解释，其采用了程序员较容易理解的类的概念来解释这两者，我觉得非常赞。在此简单翻译记录。">
+<meta name="twitter:image" content="https://raycxl.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://raycxl.github.io/"
+    },
+    "headline": "区分 ArchiMate 中的 Composition 和 Aggregation - CXL&#39;s blog",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://raycxl.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2018-11-19T15:02:23JST",
+    "dateModified": "2018-11-19T15:02:23JST",
+    "author": {
+      "@type": "Person",
+      "name": "CXL&#39;s blog"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CXL&#39;s blog",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://raycxl.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "最近因为工作涉及描述企业架构（Enterprise Architecture, EA） ，研究了下 ArchiMate，
+看到第5章 Relationships，发现其中的 Composition 和 Aggregation 非常 confuse。 官方描述如下：
+a composition relationship is that the whole or part of the source element is composed of the whole of the target element.
+an aggregation relationship is that the whole or part of the source element aggregates the whole of the target element.
+整个定义区别就是 is composed of 和 aggregate 的区别，总之我没有看懂有什么区别。
+composition官方样例： aggregation官方样例： 网上找了下，中文资源有 周金根博客 ，现在回头来看已经可以看懂了，不过当时也没有完全理解。
+我推荐Phil Curnow 的解释，其采用了程序员较容易理解的类的概念来解释这两者，我觉得非常赞。在此简单翻译记录。"
+  }
+</script>
+
+
+    <link href="https://raycxl.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://raycxl.github.io/">CXL&#39;s blog</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://raycxl.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://raycxl.github.io/post/" itemprop="url"><span itemprop="title">post</span></a></li>
+        
+        <li class="active">区分 ArchiMate 中的 Composition 和 Aggregation</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-11-19T15:02:23JST">Nov 19, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://raycxl.github.io/post/">post</a></li>
+      
+    </ul>
+
+    <h1 class="title">区分 ArchiMate 中的 Composition 和 Aggregation</h1>
+  </header>
+
+  
+
+  <div class="article-body"><p>最近因为工作涉及描述企业架构（Enterprise Architecture, EA） ，研究了下 <a href="http://pubs.opengroup.org/architecture/archimate3-doc/toc.html">ArchiMate</a>，<br />
+看到第5章 <a href="http://pubs.opengroup.org/architecture/archimate3-doc/chap05.html#_Toc489945989">Relationships</a>，发现其中的 Composition 和 Aggregation 非常 confuse。
+官方描述如下：</p>
+
+<p>a composition relationship is that the whole or part of the source element is composed of the whole of the target element.</p>
+
+<p>an aggregation relationship is that the whole or part of the source element aggregates the whole of the target element.</p>
+
+<p>整个定义区别就是 is composed of 和 aggregate 的区别，总之我没有看懂有什么区别。</p>
+
+<p>composition官方样例：
+<img src="http://pubs.opengroup.org/architecture/archimate3-doc/ts_archimate_3.0.1-final-rev_files/image034.png" alt="composition" /></p>
+
+<p>aggregation官方样例：
+<img src="http://pubs.opengroup.org/architecture/archimate3-doc/ts_archimate_3.0.1-final-rev_files/image036.png" alt="aggregation" /></p>
+
+<p>网上找了下，中文资源有 <a href="https://www.cnblogs.com/zhoujg/archive/2010/02/18/1668987.html">周金根博客</a> ，现在回头来看已经可以看懂了，不过当时也没有完全理解。</p>
+
+<p>我推荐<a href="https://www.c-sharpcorner.com/article/difference-between-composition-and-aggregation/">Phil Curnow 的解释</a>，其采用了程序员较容易理解的类的概念来解释这两者，我觉得非常赞。在此简单翻译记录。</p>
+
+<p>Composition 理解为 &ldquo;part-of&rdquo;, 一个便于比较的例子如下：</p>
+
+<p><img src="https://csharpcorner-mindcrackerinc.netdna-ssl.com/UploadFile/pcurnow/compagg07272007062838AM/Images/composition.png" alt="composition2" /></p>
+
+<p>上图中的 Car 和 Engine 抽象为两个类，Engine 的生命周期由 Car 来决定。</p>
+
+<pre><code class="language-C#">public class Engine
+{
+	//some code
+}
+
+public class Car
+
+{
+    Engine e = new Engine();
+	//some code
+}
+</code></pre>
+
+<p>Aggregation 理解为 &ldquo;has-a&rdquo;, 一个便于比较的例子如下：</p>
+
+<p><img src="https://csharpcorner-mindcrackerinc.netdna-ssl.com/UploadFile/pcurnow/compagg07272007062838AM/Images/aggregation.png" alt="aggregation2" /></p>
+
+<p>上图也可以抽象为 Person Address 两个类，但是 Address 的生命周期 和 Person 无关。</p>
+
+<pre><code class="language-C#">public class Address
+{
+	\\some code
+}
+
+public class Person
+
+{
+
+     private Address address;
+
+     public Person(Address address)
+
+     {
+
+         this.address = address;
+
+     }
+
+     \\some code
+}
+
+Address address = new Address();
+Person person = new Person(address);
+
+</code></pre>
+
+<p>回过头来看官方用例，基本符合这个说法。</p>
+
+<p>希望能给有同样疑问的读者予以参考。</p>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://raycxl.github.io/tags/archimate/">ArchiMate</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://raycxl.github.io/post/20181120/" class="list-group-item">区分 ArchiMate 中的 Composition 和 Aggregation</a>
+      
+      <a href="https://raycxl.github.io/about/" class="list-group-item">About</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://raycxl.github.io/tags/archimate" class="list-group-item">archimate</a>
+      
+      <a href="https://raycxl.github.io/tags/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85" class="list-group-item">关于作者</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; CXL&#39;s blog</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

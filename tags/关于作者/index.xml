@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>关于作者 on CXL&#39;s blog</title>
+    <link>https://raycxl.github.io/tags/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85/</link>
+    <description>Recent content in 关于作者 on CXL&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Nov 2018 15:01:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://raycxl.github.io/tags/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://raycxl.github.io/about/</link>
+      <pubDate>Mon, 19 Nov 2018 15:01:39 +0800</pubDate>
+      
+      <guid>https://raycxl.github.io/about/</guid>
+      <description>CXL  男 1986 汽车业 IT运维-&amp;gt;集成平台管理-&amp;gt;业务分析  留言请提issue</description>
+    </item>
+    
+  </channel>
+</rss>
