@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.51" />
+
+
+
+<link rel="canonical" href="https://raycxl.github.io/post/20181129/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>pyecharts 中的 tooltip_formatter - CXL&#39;s blog</title>
+    
+<meta name="description" content="近日用 pyecharts 实现关系图（Graph），需要自定义tooltip，即鼠标在关系连线 link 或节点 node 上悬停时的显示内容。 官方文档写得比较抽象，网上搜了下，未能找到可以直接套用的案例。 经过一番理解，最终成功实现了。笔者使用的 pyecharts 版本为 0.5.11，python 版本为 3.7，现总结如下：根据官方文档，自定义 tooltip 涉及参数 tooltip_formatter， pyecharts 中的这个参数是在 graph.add 阶段加入的。//定义回调函数 def tooltip_formatter_des(params): if &#39;&amp;gt;&#39; in params.name: //偷懒通过 &#39;&amp;gt;&#39; 区别 link 和 node for des in des_show: // des_show为预定义数组 temp = des.split(&#39;&amp;lt;br&amp;gt;&#39;) if temp[0] == params.name: return des else: return params.name graph.add( name, nodes, links, is_label_show=True, graph_repulsion=8000, graph_layout=None, label_text_color=Non line_curve=0.05, graph_edge_symbol=[None, &#39;arrow&#39;], line_color= &#39;black&#39;, tooltip_formatter= tooltip_formatter_des //关键参数，回调函数名作为参数 )  实际发现如此配置，仍然无法正确显示 tooltip">
+
+<meta property="og:title" content="pyecharts 中的 tooltip_formatter - CXL&#39;s blog">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://raycxl.github.io/post/20181129/">
+<meta property="og:image" content="https://raycxl.github.io/images/default.png">
+<meta property="og:site_name" content="CXL&#39;s blog">
+<meta property="og:description" content="近日用 pyecharts 实现关系图（Graph），需要自定义tooltip，即鼠标在关系连线 link 或节点 node 上悬停时的显示内容。 官方文档写得比较抽象，网上搜了下，未能找到可以直接套用的案例。 经过一番理解，最终成功实现了。笔者使用的 pyecharts 版本为 0.5.11，python 版本为 3.7，现总结如下：根据官方文档，自定义 tooltip 涉及参数 tooltip_formatter， pyecharts 中的这个参数是在 graph.add 阶段加入的。//定义回调函数 def tooltip_formatter_des(params): if &#39;&amp;gt;&#39; in params.name: //偷懒通过 &#39;&amp;gt;&#39; 区别 link 和 node for des in des_show: // des_show为预定义数组 temp = des.split(&#39;&amp;lt;br&amp;gt;&#39;) if temp[0] == params.name: return des else: return params.name graph.add( name, nodes, links, is_label_show=True, graph_repulsion=8000, graph_layout=None, label_text_color=Non line_curve=0.05, graph_edge_symbol=[None, &#39;arrow&#39;], line_color= &#39;black&#39;, tooltip_formatter= tooltip_formatter_des //关键参数，回调函数名作为参数 )  实际发现如此配置，仍然无法正确显示 tooltip">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="CXL&#39;s blog">
+<meta name="twitter:url" content="https://raycxl.github.io/post/20181129/">
+<meta name="twitter:title" content="pyecharts 中的 tooltip_formatter - CXL&#39;s blog">
+<meta name="twitter:description" content="近日用 pyecharts 实现关系图（Graph），需要自定义tooltip，即鼠标在关系连线 link 或节点 node 上悬停时的显示内容。 官方文档写得比较抽象，网上搜了下，未能找到可以直接套用的案例。 经过一番理解，最终成功实现了。笔者使用的 pyecharts 版本为 0.5.11，python 版本为 3.7，现总结如下：根据官方文档，自定义 tooltip 涉及参数 tooltip_formatter， pyecharts 中的这个参数是在 graph.add 阶段加入的。//定义回调函数 def tooltip_formatter_des(params): if &#39;&amp;gt;&#39; in params.name: //偷懒通过 &#39;&amp;gt;&#39; 区别 link 和 node for des in des_show: // des_show为预定义数组 temp = des.split(&#39;&amp;lt;br&amp;gt;&#39;) if temp[0] == params.name: return des else: return params.name graph.add( name, nodes, links, is_label_show=True, graph_repulsion=8000, graph_layout=None, label_text_color=Non line_curve=0.05, graph_edge_symbol=[None, &#39;arrow&#39;], line_color= &#39;black&#39;, tooltip_formatter= tooltip_formatter_des //关键参数，回调函数名作为参数 )  实际发现如此配置，仍然无法正确显示 tooltip">
+<meta name="twitter:image" content="https://raycxl.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://raycxl.github.io/"
+    },
+    "headline": "pyecharts 中的 tooltip_formatter - CXL&#39;s blog",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://raycxl.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2018-11-29T13:23:35JST",
+    "dateModified": "2018-11-29T13:23:35JST",
+    "author": {
+      "@type": "Person",
+      "name": "CXL&#39;s blog"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CXL&#39;s blog",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://raycxl.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "近日用 pyecharts 实现关系图（Graph），需要自定义tooltip，即鼠标在关系连线 link 或节点 node 上悬停时的显示内容。 官方文档写得比较抽象，网上搜了下，未能找到可以直接套用的案例。 经过一番理解，最终成功实现了。
+笔者使用的 pyecharts 版本为 0.5.11，python 版本为 3.7，现总结如下：
+根据官方文档，自定义 tooltip 涉及参数 tooltip_formatter， pyecharts 中的这个参数是在 graph.add 阶段加入的。
+//定义回调函数 def tooltip_formatter_des(params): if '&gt;' in params.name: //偷懒通过 '&gt;' 区别 link 和 node for des in des_show: // des_show为预定义数组 temp = des.split('&lt;br&gt;') if temp[0] == params.name: return des else: return params.name graph.add( name, nodes, links, is_label_show=True, graph_repulsion=8000, graph_layout=None, label_text_color=Non line_curve=0.05, graph_edge_symbol=[None, 'arrow'], line_color= 'black', tooltip_formatter= tooltip_formatter_des //关键参数，回调函数名作为参数 )  实际发现如此配置，仍然无法正确显示 tooltip"
+  }
+</script>
+
+
+    <link href="https://raycxl.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://raycxl.github.io/">CXL&#39;s blog</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://raycxl.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://raycxl.github.io/post/" itemprop="url"><span itemprop="title">post</span></a></li>
+        
+        <li class="active">pyecharts 中的 tooltip_formatter</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-11-29T13:23:35JST">Nov 29, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://raycxl.github.io/post/">post</a></li>
+      
+    </ul>
+
+    <h1 class="title">pyecharts 中的 tooltip_formatter</h1>
+  </header>
+
+  
+
+  <div class="article-body"><p>近日用 pyecharts 实现关系图（Graph），需要自定义tooltip，即鼠标在关系连线 link 或节点 node 上悬停时的显示内容。
+官方文档写得比较抽象，网上搜了下，未能找到可以直接套用的案例。
+经过一番理解，最终成功实现了。</p>
+
+<p><img src="/image/tooltip.png" alt="customer tooltip" /></p>
+
+<p>笔者使用的 pyecharts 版本为 0.5.11，python 版本为 3.7，现总结如下：</p>
+
+<p>根据官方文档，自定义 tooltip 涉及参数 tooltip_formatter，
+pyecharts 中的这个参数是在 graph.add 阶段加入的。</p>
+
+<pre><code class="language-python">//定义回调函数
+def tooltip_formatter_des(params):
+    if '&gt;' in params.name: //偷懒通过 '&gt;' 区别 link 和 node
+        for des in des_show: // des_show为预定义数组
+            temp = des.split('&lt;br&gt;')
+            if temp[0] == params.name:
+                return des
+
+    else:
+        return params.name
+
+graph.add(
+    name,
+    nodes,
+    links,
+    is_label_show=True,
+    graph_repulsion=8000,
+    graph_layout=None,
+    label_text_color=Non
+    line_curve=0.05,
+    graph_edge_symbol=[None, 'arrow'],
+    line_color= 'black',
+    tooltip_formatter= tooltip_formatter_des  //关键参数，回调函数名作为参数
+)
+		
+		
+</code></pre>
+
+<p>实际发现如此配置，仍然无法正确显示 tooltip<br />
+经简单测试，发现回调函数中不加变量没有问题，加全局变量就会出现异常。<br />
+通过 F12 调试可以看到变量 des_show 未定义的报错。<br />
+经研究，发现 pyecharts 对于 tooltip_formatter 的回调函数采用的是翻译 python 代码到 javascript 的方式。<br />
+实际观察生成的 html，会发现其只进行 tooltip_formatter_des 这段代码的翻译。<br />
+因此其中的全局变量 des_show 并没有一同生成 javascript 的代码。<br />
+通过在 生成的 html 中直接加入 该变量定义变通解决了此问题。<br />
+后续我在 pyecharts 项目中提交了 <a href="https://github.com/pyecharts/pyecharts/issues/852">issue#852</a>，供他人参考。</p>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://raycxl.github.io/tags/pyecharts/">pyecharts</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://raycxl.github.io/post/20181129/" class="list-group-item">pyecharts 中的 tooltip_formatter</a>
+      
+      <a href="https://raycxl.github.io/post/20181120/" class="list-group-item">区分 ArchiMate 中的 Composition 和 Aggregation</a>
+      
+      <a href="https://raycxl.github.io/about/" class="list-group-item">About</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://raycxl.github.io/tags/archimate" class="list-group-item">archimate</a>
+      
+      <a href="https://raycxl.github.io/tags/pyecharts" class="list-group-item">pyecharts</a>
+      
+      <a href="https://raycxl.github.io/tags/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85" class="list-group-item">关于作者</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; CXL&#39;s blog</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

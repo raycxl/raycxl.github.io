@@ -58,6 +58,30 @@
       <li><article class="li">
   <header>
     <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-11-29T13:23:35JST">Nov 29, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://raycxl.github.io/post/">post</a></li>
+      
+    </ul>
+    <h2 class="title"><a href="https://raycxl.github.io/post/20181129/">pyecharts 中的 tooltip_formatter</a></h2>
+  </header>
+
+  
+  <div class="summary">近日用 pyecharts 实现关系图（Graph），需要自定义tooltip，即鼠标在关系连线 link 或节点 node 上悬停时的显示内容。 官方文档写得比较抽象，网上搜了下，未能找到可以直接套用的案例。 经过一番理解，最终成功实现了。
+笔者使用的 pyecharts 版本为 0.5.11，python 版本为 3.7，现总结如下：
+根据官方文档，自定义 tooltip 涉及参数 tooltip_formatter， pyecharts 中的这个参数是在 graph.add 阶段加入的。
+//定义回调函数 def tooltip_formatter_des(params): if '&gt;' in params.name: //偷懒通过 '&gt;' 区别 link 和 node for des in des_show: // des_show为预定义数组 temp = des.split('&lt;br&gt;') if temp[0] == params.name: return des else: return params.name graph.add( name, nodes, links, is_label_show=True, graph_repulsion=8000, graph_layout=None, label_text_color=Non line_curve=0.05, graph_edge_symbol=[None, 'arrow'], line_color= 'black', tooltip_formatter= tooltip_formatter_des //关键参数，回调函数名作为参数 )  实际发现如此配置，仍然无法正确显示 tooltip</div>
+
+  
+  <footer>
+    <a href="https://raycxl.github.io/post/20181129/" title="pyecharts 中的 tooltip_formatter">Read More…</a>
+  </footer>
+  
+</article>
+</li>
+      
+      <li><article class="li">
+  <header>
+    <ul class="p-facts">
       <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-11-19T15:02:23JST">Nov 19, 2018</time></li>
       <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://raycxl.github.io/post/">post</a></li>
       
@@ -115,6 +139,8 @@ composition官方样例： aggregation官方样例： 网上找了下，中文�
     </div>
     <div class="list-group">
       
+      <a href="https://raycxl.github.io/post/20181129/" class="list-group-item">pyecharts 中的 tooltip_formatter</a>
+      
       <a href="https://raycxl.github.io/post/20181120/" class="list-group-item">区分 ArchiMate 中的 Composition 和 Aggregation</a>
       
       <a href="https://raycxl.github.io/about/" class="list-group-item">About</a>
@@ -139,6 +165,8 @@ composition官方样例： aggregation官方样例： 网上找了下，中文�
     <div class="list-group">
       
       <a href="https://raycxl.github.io/tags/archimate" class="list-group-item">archimate</a>
+      
+      <a href="https://raycxl.github.io/tags/pyecharts" class="list-group-item">pyecharts</a>
       
       <a href="https://raycxl.github.io/tags/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85" class="list-group-item">关于作者</a>
       

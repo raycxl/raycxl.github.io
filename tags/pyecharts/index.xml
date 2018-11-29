@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on CXL&#39;s blog</title>
-    <link>https://raycxl.github.io/post/</link>
-    <description>Recent content in Posts on CXL&#39;s blog</description>
+    <title>Pyecharts on CXL&#39;s blog</title>
+    <link>https://raycxl.github.io/tags/pyecharts/</link>
+    <description>Recent content in Pyecharts on CXL&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 29 Nov 2018 13:23:35 +0800</lastBuildDate>
     
-	<atom:link href="https://raycxl.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://raycxl.github.io/tags/pyecharts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,21 +21,6 @@
 笔者使用的 pyecharts 版本为 0.5.11，python 版本为 3.7，现总结如下：
 根据官方文档，自定义 tooltip 涉及参数 tooltip_formatter， pyecharts 中的这个参数是在 graph.add 阶段加入的。
 //定义回调函数 def tooltip_formatter_des(params): if &#39;&amp;gt;&#39; in params.name: //偷懒通过 &#39;&amp;gt;&#39; 区别 link 和 node for des in des_show: // des_show为预定义数组 temp = des.split(&#39;&amp;lt;br&amp;gt;&#39;) if temp[0] == params.name: return des else: return params.name graph.add( name, nodes, links, is_label_show=True, graph_repulsion=8000, graph_layout=None, label_text_color=Non line_curve=0.05, graph_edge_symbol=[None, &#39;arrow&#39;], line_color= &#39;black&#39;, tooltip_formatter= tooltip_formatter_des //关键参数，回调函数名作为参数 )  实际发现如此配置，仍然无法正确显示 tooltip</description>
-    </item>
-    
-    <item>
-      <title>区分 ArchiMate 中的 Composition 和 Aggregation</title>
-      <link>https://raycxl.github.io/post/20181120/</link>
-      <pubDate>Mon, 19 Nov 2018 15:02:23 +0800</pubDate>
-      
-      <guid>https://raycxl.github.io/post/20181120/</guid>
-      <description>最近因为工作涉及描述企业架构（Enterprise Architecture, EA） ，研究了下 ArchiMate，
-看到第5章 Relationships，发现其中的 Composition 和 Aggregation 非常 confuse。 官方描述如下：
-a composition relationship is that the whole or part of the source element is composed of the whole of the target element.
-an aggregation relationship is that the whole or part of the source element aggregates the whole of the target element.
-整个定义区别就是 is composed of 和 aggregate 的区别，总之我没有看懂有什么区别。
-composition官方样例： aggregation官方样例： 网上找了下，中文资源有 周金根博客 ，现在回头来看已经可以看懂了，不过当时也没有完全理解。
-我推荐Phil Curnow 的解释，其采用了程序员较容易理解的类的概念来解释这两者，我觉得非常赞。在此简单翻译记录。</description>
     </item>
     
   </channel>
