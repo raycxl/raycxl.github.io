@@ -6,10 +6,28 @@
     <description>Recent content on CXL&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 29 Nov 2018 13:23:35 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 03 Dec 2018 15:27:47 +0800</lastBuildDate>
     
 	<atom:link href="https://raycxl.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chrome 访问 127.0.0.1 的问题</title>
+      <link>https://raycxl.github.io/post/20181203/</link>
+      <pubDate>Mon, 03 Dec 2018 15:27:47 +0800</pubDate>
+      
+      <guid>https://raycxl.github.io/post/20181203/</guid>
+      <description>最近研究了下 flask，在本地启动 flask server 后发现用默认浏览器 Chrome 访问 127.0.0.1:5000 报错 Connection refused.
+而改用 IE 可以正常显示页面。
+经搜索查到一文，其中谈到 LAN setting 中的 Bypass proxy server for local address 选项与该现象有所联系。
+考虑到开启 flask server 时的确处于 proxy 环境，测试改连 手机 4G 网络，Chome 可以正常显示页面。
+因此该现象的确是和 proxy 有关。
+自查本地 LAN setting，发现自身的情况和上文描述略有差别。
+笔者LAN setting 采用的是 pac 配置脚本，bypass proxy server for local address 这个选项是无法操作的。
+经测试，在开启 proxy 的情况下，无论此选项在灰色disable状态里是勾选还是未勾选，chrome 访问 127.0.0.1 都会报错 Connection refused.
+从实际结果来看，这种情况下 IE 会对 127.0.0.1 bypass proxy，而 chrome 不会。
+而 chrome 的 proxy 设置默认是直接调用 IE proxy 设置的。因此我理解此为 不同浏览器 实现上的区别。</description>
+    </item>
     
     <item>
       <title>pyecharts 中的 tooltip_formatter</title>

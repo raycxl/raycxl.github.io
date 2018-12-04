@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.51" />
+
+
+
+<link rel="canonical" href="https://raycxl.github.io/post/20181203/">
+
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>Chrome 访问 127.0.0.1 的问题 - CXL&#39;s blog</title>
+    
+<meta name="description" content="最近研究了下 flask，在本地启动 flask server 后发现用默认浏览器 Chrome 访问 127.0.0.1:5000 报错 Connection refused.而改用 IE 可以正常显示页面。经搜索查到一文，其中谈到 LAN setting 中的 Bypass proxy server for local address 选项与该现象有所联系。考虑到开启 flask server 时的确处于 proxy 环境，测试改连 手机 4G 网络，Chome 可以正常显示页面。因此该现象的确是和 proxy 有关。自查本地 LAN setting，发现自身的情况和上文描述略有差别。笔者LAN setting 采用的是 pac 配置脚本，bypass proxy server for local address 这个选项是无法操作的。经测试，在开启 proxy 的情况下，无论此选项在灰色disable状态里是勾选还是未勾选，chrome 访问 127.0.0.1 都会报错 Connection refused.从实际结果来看，这种情况下 IE 会对 127.0.0.1 bypass proxy，而 chrome 不会。而 chrome 的 proxy 设置默认是直接调用 IE proxy 设置的。因此我理解此为 不同浏览器 实现上的区别。">
+
+<meta property="og:title" content="Chrome 访问 127.0.0.1 的问题 - CXL&#39;s blog">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://raycxl.github.io/post/20181203/">
+<meta property="og:image" content="https://raycxl.github.io/images/default.png">
+<meta property="og:site_name" content="CXL&#39;s blog">
+<meta property="og:description" content="最近研究了下 flask，在本地启动 flask server 后发现用默认浏览器 Chrome 访问 127.0.0.1:5000 报错 Connection refused.而改用 IE 可以正常显示页面。经搜索查到一文，其中谈到 LAN setting 中的 Bypass proxy server for local address 选项与该现象有所联系。考虑到开启 flask server 时的确处于 proxy 环境，测试改连 手机 4G 网络，Chome 可以正常显示页面。因此该现象的确是和 proxy 有关。自查本地 LAN setting，发现自身的情况和上文描述略有差别。笔者LAN setting 采用的是 pac 配置脚本，bypass proxy server for local address 这个选项是无法操作的。经测试，在开启 proxy 的情况下，无论此选项在灰色disable状态里是勾选还是未勾选，chrome 访问 127.0.0.1 都会报错 Connection refused.从实际结果来看，这种情况下 IE 会对 127.0.0.1 bypass proxy，而 chrome 不会。而 chrome 的 proxy 设置默认是直接调用 IE proxy 设置的。因此我理解此为 不同浏览器 实现上的区别。">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="CXL&#39;s blog">
+<meta name="twitter:url" content="https://raycxl.github.io/post/20181203/">
+<meta name="twitter:title" content="Chrome 访问 127.0.0.1 的问题 - CXL&#39;s blog">
+<meta name="twitter:description" content="最近研究了下 flask，在本地启动 flask server 后发现用默认浏览器 Chrome 访问 127.0.0.1:5000 报错 Connection refused.而改用 IE 可以正常显示页面。经搜索查到一文，其中谈到 LAN setting 中的 Bypass proxy server for local address 选项与该现象有所联系。考虑到开启 flask server 时的确处于 proxy 环境，测试改连 手机 4G 网络，Chome 可以正常显示页面。因此该现象的确是和 proxy 有关。自查本地 LAN setting，发现自身的情况和上文描述略有差别。笔者LAN setting 采用的是 pac 配置脚本，bypass proxy server for local address 这个选项是无法操作的。经测试，在开启 proxy 的情况下，无论此选项在灰色disable状态里是勾选还是未勾选，chrome 访问 127.0.0.1 都会报错 Connection refused.从实际结果来看，这种情况下 IE 会对 127.0.0.1 bypass proxy，而 chrome 不会。而 chrome 的 proxy 设置默认是直接调用 IE proxy 设置的。因此我理解此为 不同浏览器 实现上的区别。">
+<meta name="twitter:image" content="https://raycxl.github.io/images/default.png">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://raycxl.github.io/"
+    },
+    "headline": "Chrome 访问 127.0.0.1 的问题 - CXL&#39;s blog",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://raycxl.github.io/images/default.png",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2018-12-03T15:27:47JST",
+    "dateModified": "2018-12-03T15:27:47JST",
+    "author": {
+      "@type": "Person",
+      "name": "CXL&#39;s blog"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "CXL&#39;s blog",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://raycxl.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "最近研究了下 flask，在本地启动 flask server 后发现用默认浏览器 Chrome 访问 127.0.0.1:5000 报错 Connection refused.
+而改用 IE 可以正常显示页面。
+经搜索查到一文，其中谈到 LAN setting 中的 Bypass proxy server for local address 选项与该现象有所联系。
+考虑到开启 flask server 时的确处于 proxy 环境，测试改连 手机 4G 网络，Chome 可以正常显示页面。
+因此该现象的确是和 proxy 有关。
+自查本地 LAN setting，发现自身的情况和上文描述略有差别。
+笔者LAN setting 采用的是 pac 配置脚本，bypass proxy server for local address 这个选项是无法操作的。
+经测试，在开启 proxy 的情况下，无论此选项在灰色disable状态里是勾选还是未勾选，chrome 访问 127.0.0.1 都会报错 Connection refused.
+从实际结果来看，这种情况下 IE 会对 127.0.0.1 bypass proxy，而 chrome 不会。
+而 chrome 的 proxy 设置默认是直接调用 IE proxy 设置的。因此我理解此为 不同浏览器 实现上的区别。"
+  }
+</script>
+
+
+    <link href="https://raycxl.github.io/css/styles.css" rel="stylesheet">
+    
+
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://raycxl.github.io/">CXL&#39;s blog</a>
+          </div>
+
+          
+
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        
+<div class="row">
+  <div class="col-md-8">
+
+    <nav class="p-crumb">
+      <ol class="breadcrumb">
+        <li><a href="https://raycxl.github.io/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        
+        <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://raycxl.github.io/post/" itemprop="url"><span itemprop="title">post</span></a></li>
+        
+        <li class="active">Chrome 访问 127.0.0.1 的问题</li>
+      </ol>
+    </nav>
+
+    <article class="single">
+  <header>
+    <ul class="p-facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-12-03T15:27:47JST">Dec 3, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://raycxl.github.io/post/">post</a></li>
+      
+    </ul>
+
+    <h1 class="title">Chrome 访问 127.0.0.1 的问题</h1>
+  </header>
+
+  
+
+  <div class="article-body"><p>最近研究了下 flask，在本地启动 flask server 后发现用默认浏览器 Chrome 访问 127.0.0.1:5000 报错 Connection refused.</p>
+
+<p>而改用 IE 可以正常显示页面。</p>
+
+<p>经搜索<a href="https://jingyan.baidu.com/article/b0b63dbfc788994a483070f6.html">查到一文</a>，其中谈到 LAN setting 中的 Bypass proxy server for local address 选项与该现象有所联系。</p>
+
+<p>考虑到开启 flask server 时的确处于  proxy 环境，测试改连 手机 4G 网络，Chome 可以正常显示页面。</p>
+
+<p>因此该现象的确是和 proxy 有关。</p>
+
+<p>自查本地 LAN setting，发现自身的情况和上文描述略有差别。</p>
+
+<p>笔者LAN setting 采用的是 pac 配置脚本，bypass proxy server for local address 这个选项是无法操作的。</p>
+
+<p><img src="/image/proxy.png" alt="proxy" /></p>
+
+<p>经测试，在开启 proxy 的情况下，无论此选项在灰色disable状态里是勾选还是未勾选，chrome 访问 127.0.0.1 都会报错 Connection refused.</p>
+
+<p>从实际结果来看，这种情况下 IE 会对 127.0.0.1 bypass proxy，而 chrome 不会。</p>
+
+<p>而 chrome 的 proxy 设置默认是直接调用 IE proxy 设置的。因此我理解此为 不同浏览器 实现上的区别。</p>
+
+<p>笔者 Chrome 版本为 70.0.3538.110 ，IE 版本为 11.1387.15063.0 ，在此记录此现象供参考。</p>
+</div>
+
+  <footer class="article-footer">
+    
+    
+    
+    
+    
+    <section class="bordered">
+      <header>
+        <div class="panel-title">TAGS</div>
+      </header>
+      <div>
+        <ul class="p-terms">
+          
+          <li><a href="https://raycxl.github.io/tags/flask/">flask</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+  </footer>
+
+</article>
+
+
+    
+  </div>
+
+  <div class="col-md-4">
+    
+<aside class="l-sidebar">
+
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">LATESTS</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://raycxl.github.io/post/20181203/" class="list-group-item">Chrome 访问 127.0.0.1 的问题</a>
+      
+      <a href="https://raycxl.github.io/post/20181129/" class="list-group-item">pyecharts 中的 tooltip_formatter</a>
+      
+      <a href="https://raycxl.github.io/post/20181120/" class="list-group-item">区分 ArchiMate 中的 Composition 和 Aggregation</a>
+      
+      <a href="https://raycxl.github.io/about/" class="list-group-item">About</a>
+      
+    </div>
+  </section>
+
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">CATEGORY</div>
+    </div>
+    <div class="list-group">
+      
+    </div>
+  </section>
+  
+  <section class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">TAG</div>
+    </div>
+    <div class="list-group">
+      
+      <a href="https://raycxl.github.io/tags/archimate" class="list-group-item">archimate</a>
+      
+      <a href="https://raycxl.github.io/tags/flask" class="list-group-item">flask</a>
+      
+      <a href="https://raycxl.github.io/tags/pyecharts" class="list-group-item">pyecharts</a>
+      
+      <a href="https://raycxl.github.io/tags/%E5%85%B3%E4%BA%8E%E4%BD%9C%E8%80%85" class="list-group-item">关于作者</a>
+      
+    </div>
+  </section>
+  
+
+</aside>
+
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="container">
+        <p><span class="h-logo">&copy; CXL&#39;s blog</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_beg">Beg</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+
